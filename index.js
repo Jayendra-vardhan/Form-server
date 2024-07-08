@@ -7,8 +7,8 @@ const Counter = require('./models/counter');
 
 const app = express();
 app.use(cors({
-  origin: ["*"], 
-  methods: ["POST", "GET", "PUT", "DELETE", "UPDATE"],
+  origin: "*", 
+  methods: ["*"],
   credentials: true,
 }));
 app.use(bodyParser.json());
@@ -28,6 +28,15 @@ const getNextSequenceValue = async (sequenceName) => {
     throw err;
   }
 };
+
+app.get('/', async (req, res) => {
+  try {
+    res.json(`welcome to backend`);
+  } catch (err) {
+    console.error(`Error fetching records: ${err.message}`);
+    res.status(500).send(`Error fetching records: ${err.message}`);
+  }
+});
 
 app.get('/records', async (req, res) => {
   try {
