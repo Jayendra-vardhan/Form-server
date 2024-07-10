@@ -4,6 +4,7 @@ const cors = require('cors');
 const connectDB = require('./database');
 const Record = require('./models/Record');
 const Counter = require('./models/counter');
+require('./keepAwake');
 
 const app = express();
 app.use(cors({
